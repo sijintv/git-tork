@@ -14,7 +14,6 @@
 
 ---
 
-<!-- TODO: replace with a real screenshot: run `git-tork` in a repo and capture your terminal -->
 ![git-tork screenshot](assets/screenshot.png)
 
 ## Why git-tork?
