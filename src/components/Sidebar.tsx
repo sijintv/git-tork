@@ -5,11 +5,11 @@ import ScrollableList from './ScrollableList.js';
 import { useWindowSize } from '../hooks/useWindowSize.js';
 import TextInput from 'ink-text-input';
 import path from 'path';
-import fs from 'fs';
 
 interface SidebarProps {
     onSelect: (item: any) => void;
     isActive: boolean;
+    onInputModeChange?: (inputMode: boolean) => void;
 }
 
 type Section = 'local' | 'commits' | 'branches' | 'remotes';
@@ -21,7 +21,7 @@ interface SidebarItem {
     key: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ onSelect, isActive }) => {
+const Sidebar: React.FC<SidebarProps> = ({ onSelect, isActive, onInputModeChange }) => {
     const [branches, setBranches] = useState<string[]>([]);
     const [remotes, setRemotes] = useState<string[]>([]);
     const [currentBranch, setCurrentBranch] = useState('');
@@ -95,6 +95,10 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelect, isActive }) => {
     const [creatingBranch, setCreatingBranch] = useState(false);
     const [newBranchName, setNewBranchName] = useState('');
 
+    useEffect(() => {
+        onInputModeChange?.(creatingBranch);
+    }, [creatingBranch]);
+
     const handleSelect = async (item: SidebarItem) => {
         if (item.value.type === 'header') {
             if (item.value.name) {
@@ -102,21 +106,15 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelect, isActive }) => {
             }
         } else if (item.value.type === 'branch') {
             if (item.value.name) {
+                setError(null);
                 try {
                     await checkout(item.value.name);
                     const b = await getBranches();
                     setBranches(b.all);
                     setCurrentBranch(b.current);
-                } catch (e) { }
-            }
-        } else if (item.value.type === 'remote') {
-            if (item.value.name) {
-                try {
-                    await checkout(item.value.name);
-                    const b = await getBranches();
-                    setBranches(b.all);
-                    setCurrentBranch(b.current);
-                } catch (e) { }
+                } catch (e: any) {
+                    setError(e.message || 'Checkout failed');
+                }
             }
         } else if (item.value.type === 'new-branch') {
             setCreatingBranch(true);

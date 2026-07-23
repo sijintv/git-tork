@@ -13,7 +13,9 @@ build
 # Misc
 .DS_Store
 .env
+.env.*
 .npmrc
+*.tgz
 *.log
 npm-debug.log*
 yarn-debug.log*

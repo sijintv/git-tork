@@ -36,8 +36,9 @@ const AppContent = () => {
     });
 
     useInput(async (input, key) => {
-        if (input === 'q') {
-            process.exit(0);
+        if (input === 'q' && !inputMode) {
+            exit();
+            return;
         }
         if (key.leftArrow && !inputMode) {
             setFocusArea(prev => {
@@ -63,7 +64,7 @@ const AppContent = () => {
             });
         }
 
-        if (input === 'p' && focusArea !== 'status') {
+        if (input === 'p' && focusArea !== 'status' && !inputMode) {
             setStatusMessage('Pushing...');
             try {
                 await push();
@@ -72,7 +73,7 @@ const AppContent = () => {
                 setStatusMessage(`Push failed: ${e.message}`);
             }
         }
-        if (input === 'l' && focusArea !== 'status') {
+        if (input === 'l' && focusArea !== 'status' && !inputMode) {
             setStatusMessage('Pulling...');
             try {
                 await pull();
@@ -102,7 +103,7 @@ const AppContent = () => {
     return (
         <Box flexDirection="column" height="100%">
             <Box borderStyle="single" borderColor="green" flexDirection="row" justifyContent="space-between">
-                <Text>Terminal Fork - 'q': exit, 'Arrows': nav, 'p': push, 'l': pull</Text>
+                <Text>git-tork - 'q': exit, 'Arrows': nav, 'p': push, 'l': pull</Text>
                 <Text>{statusMessage}</Text>
             </Box>
             <Box flexDirection="row" flexGrow={1}>
@@ -110,6 +111,7 @@ const AppContent = () => {
                     <Sidebar
                         isActive={focusArea === 'sidebar'}
                         onSelect={handleSidebarSelect}
+                        onInputModeChange={setInputMode}
                     />
                 </Box>
 

@@ -1,0 +1,60 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1117"/>
+      <stop offset="1" stop-color="#10151F"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#3FB950"/>
+      <stop offset="1" stop-color="#2EA043"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.1" r="0.9">
+      <stop stop-color="#3FB950" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#3FB950" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- logo mark -->
+  <g transform="translate(120,175)">
+    <rect width="280" height="280" rx="62" fill="#161B26" stroke="#3FB950" stroke-opacity="0.4" stroke-width="3"/>
+    <circle cx="52" cy="48" r="7" fill="#FF5F57"/>
+    <circle cx="78" cy="48" r="7" fill="#FEBC2E"/>
+    <circle cx="104" cy="48" r="7" fill="#28C840"/>
+    <g stroke="url(#accent)" stroke-width="15" stroke-linecap="round" fill="none">
+      <path d="M140 224 V 148"/>
+      <path d="M140 148 C 140 120, 96 126, 96 98"/>
+      <path d="M140 148 C 140 120, 184 126, 184 98"/>
+    </g>
+    <circle cx="96" cy="88" r="16" fill="#161B26" stroke="#3FB950" stroke-width="10"/>
+    <circle cx="184" cy="88" r="16" fill="#161B26" stroke="#58A6FF" stroke-width="10"/>
+    <circle cx="140" cy="224" r="16" fill="#161B26" stroke="#3FB950" stroke-width="10"/>
+    <path d="M184 208 l 20 12 -20 12" stroke="#58A6FF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M213 232 h 22" stroke="#58A6FF" stroke-width="9" stroke-linecap="round"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="470" y="290" font-family="SF Mono, JetBrains Mono, Fira Code, Menlo, monospace" font-size="88" font-weight="700" fill="#E6EDF3">git-tork</text>
+  <text x="472" y="352" font-family="SF Mono, JetBrains Mono, Fira Code, Menlo, monospace" font-size="30" fill="#8B949E">A keyboard-first Git client for your terminal</text>
+
+  <!-- fake prompt -->
+  <g font-family="SF Mono, JetBrains Mono, Fira Code, Menlo, monospace" font-size="26">
+    <text x="472" y="425" fill="#3FB950">$</text>
+    <text x="500" y="425" fill="#E6EDF3">npx git-tork</text>
+    <rect x="710" y="404" width="14" height="26" fill="#3FB950">
+      <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- badges -->
+  <g font-family="SF Mono, JetBrains Mono, Fira Code, Menlo, monospace" font-size="20">
+    <rect x="472" y="460" width="180" height="42" rx="21" fill="#1F2733"/>
+    <text x="500" y="487" fill="#8B949E">Open Source</text>
+    <rect x="668" y="460" width="130" height="42" rx="21" fill="#1F2733"/>
+    <text x="696" y="487" fill="#8B949E">MIT</text>
+    <rect x="814" y="460" width="230 " height="42" rx="21" fill="#1F2733"/>
+    <text x="842" y="487" fill="#8B949E">React + Ink</text>
+  </g>
+</svg>
